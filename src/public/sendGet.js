@@ -1,5 +1,19 @@
+import {logger} from '../utils/logger';
+
 var reqTarget = 'http://localhost:3000/api/chat';
 var token = 'JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRvckBnZ2cucnUiLCJwYXNzd29yZCI6IjEyMzQ1IiwiaWF0IjoxNDY5NTc1NDc2LCJleHAiOjE0Njk2NzU1NTZ9.Xcgil9GWzdqsPqxd9VFd0c25CO79twoPEaFViD1JXAM';
+//
+// let a = false;
+// if (a) {
+//     sendG();
+// }
+
+//export from bundle
+window.sendG = sendG;
+
+function webpackTest() {
+    console.log('!!!!!!!!  webpack ok!');
+}
 
 function sendG() {
     token = document.getElementById('text1').value;
@@ -12,6 +26,9 @@ function simpleCallback(text) {
 
 function sendRequest(reqTarget, token, callback) {
     console.log('token: ' + token);
+    console.log('type ' + typeof logger);
+    console.log('val ' + logger);
+    logger.debug('token debug: ' + token);
     // construct an HTTP request
     var xhr = new XMLHttpRequest();
     xhr.open('GET', reqTarget, true);

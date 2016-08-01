@@ -1,7 +1,8 @@
 import {Strategy as JwtStrategy} from 'passport-jwt';
 import {ExtractJwt} from 'passport-jwt';
 import config from '../config/main';
-import logger from 'winston';
+import {logger} from '../utils/logger';
+
 
 // Setup work and export for the JWT passport strategy
 export default function(passport) {
@@ -9,7 +10,7 @@ export default function(passport) {
         jwtFromRequest: ExtractJwt.fromAuthHeader(),
         secretOrKey: config.secret
     };
-    passport.use(new JwtStrategy(opts, function(jwtPayload, done) {
+    passport.use(new JwtStrategy(opts, (jwtPayload, done) => {
         /*
         User.findOne({id: jwt_payload.id}, function(err, user) {
             if (err) {
